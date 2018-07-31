@@ -9,33 +9,41 @@ import { Component, OnInit } from '@angular/core';
 export class DataComponent implements OnInit {
 
   result: any = {};
+  student: Student = new Student();
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
 
-  query() {
-    this.http.get('http://localhost:8085/mongo/query', { headers: this.getHeaders() })
+  query(name: string) {
+    this.http.get(`http://localhost:8085/mongo/query?name=${name}`, { headers: this.getHeaders() })
       .subscribe(resp => this.result = resp, error => this.result = error.error);
   }
 
   update() {
-    this.http.get('http://localhost:8085/mongo/update', { headers: this.getHeaders() })
+    this.http.put('http://localhost:8085/mongo/update', this.student, { headers: this.getHeaders() })
       .subscribe(resp => this.result = resp, error => this.result = error.error);
   }
 
   insert() {
-    this.http.get('http://localhost:8085/mongo/insert', { headers: this.getHeaders() })
+    this.http.post('http://localhost:8085/mongo/insert', this.student, { headers: this.getHeaders() })
       .subscribe(resp => this.result = resp, error => this.result = error.error);
   }
 
-  delete() {
-    this.http.get('http://localhost:8085/mongo/delete', { headers: this.getHeaders() })
+  delete(name: string) {
+    this.http.delete(`http://localhost:8085/mongo/delete?name=${name}`, { headers: this.getHeaders() })
       .subscribe(resp => this.result = resp, error => this.result = error.error);
   }
 
   private getHeaders(): HttpHeaders {
     return new HttpHeaders().set('Authorization', `Bearer ${localStorage['user']}`);
   }
+}
+
+class Student {
+  name = '';
+  age = 20;
+  telephone = '';
+  mobile = '';
 }

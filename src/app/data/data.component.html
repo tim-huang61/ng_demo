@@ -1,12 +1,37 @@
-<div>
-
-  <div>
-    <button (click)="query()">Mongo 查詢</button>
-    <button (click)="insert()">Mongo 新增</button>
-    <button (click)="update()">Mongo 更新</button>
-    <button (click)="delete()">Mongo 刪除</button>
+<div class="context">
+  <div class="form-group">
+    <label for="">姓名</label>
+    <input type="text" class="form-control" [(ngModel)]="student.name">
   </div>
-  <br>
+  <div class="form-group">
+    <label for="">年齡</label>
+    <input type="number" class="form-control" [(ngModel)]="student.age">
+  </div>
+  <div class="form-group">
+    <label for="">電話</label>
+    <input type="password" class="form-control" [(ngModel)]="student.telephone">
+  </div>
+  <div class="form-group">
+    <label for="">手機</label>
+    <input type="password" class="form-control" [(ngModel)]="student.mobile">
+  </div>
+  <div class="form-group">
+
+    <button class="btn btn-secondary" (click)="insert()">Mongo 新增</button>
+    <button class="btn btn-warning" (click)="update()">Mongo 更新</button>
+
+  </div>
+  <div>
+    <div>
+      <div class="form-group">
+        <label for="">姓名</label>
+        <input type="text" class="form-control" #input>
+      </div>
+      <button class="btn btn-primary" (click)="query(input.value)">Mongo 查詢</button>
+      <button class="btn btn-danger" (click)="delete(input.value)">Mongo 刪除</button>
+    </div>
+  </div>
+
   <div>
     <h3 class="text-xl-center">結果</h3>
     <br>

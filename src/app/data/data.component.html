@@ -1,0 +1,17 @@
+<div>
+
+  <div>
+    <button (click)="query()">Mongo 查詢</button>
+    <button (click)="insert()">Mongo 新增</button>
+    <button (click)="update()">Mongo 更新</button>
+    <button (click)="delete()">Mongo 刪除</button>
+  </div>
+  <br>
+  <div>
+    <h3 class="text-xl-center">結果</h3>
+    <br>
+    <div>
+      {{result|json}}
+    </div>
+  </div>
+</div>
